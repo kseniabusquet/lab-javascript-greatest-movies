@@ -25,8 +25,20 @@ function howManyMovies(arr) {
 
 function scoresAverage(arr) {
 if (!arr.length) return 0;
-let sum = arr.reduce ((previousValue, currentValue) => previousValue + currentValue.score, 0);
-return Math.round(sum/arr.length*100)/100;
+
+const arrayWithoutEmptyValues = [];
+
+//checking for empty values
+arr.forEach(element => {
+if ((!("score" in element)) || (element.score === "")) element.score = 0;
+arrayWithoutEmptyValues.push(element);
+});
+
+//calculating the sum
+let sum = arrayWithoutEmptyValues.reduce ((previousValue, currentValue) => previousValue + currentValue.score, 0);
+
+//returning the avg rounded to 2 decimals
+return Math.round(sum/arrayWithoutEmptyValues.length*100)/100;
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -64,11 +76,27 @@ function orderAlphabetically(arr) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
+  /*let result = [];
+
+  //getting 2 integers out of string
+  let durationBefore = "";
+  arr.forEach(element => {
+    durationBefore = element.duration.split(" ");
+    result.push(parseInt(duration,10))
+  });
+
+  //updating values in the final array
+  finalArray = arr.slice(0);
+  finalArray.forEach((element, index) => {
+    element[i].duration = result[i]*60 + result[i+1];
+  })
+
+  return finalArray;*/
 
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arr) {}
 
 
 
